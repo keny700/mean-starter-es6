@@ -7,25 +7,25 @@ class mainController {
 
     load() {
         this.todoService.getAll().then((res) => {
-            this.todos = res.data;
+            this.contacts = res.data;
         })
     }
 
     create() {
-        this.todoService.create(this.todo).then(() => {
-            this.todo = '';
+        this.todoService.create(this.new).then(() => {
+            this.new = '';
             this.load()
         })
     }
 
-    update(todo) {
-        this.todoService.update(todo._id, todo.description).then(() => {
+    update(contact) {
+        this.todoService.update(contact._id, contact.nom, contact.numero).then(() => {
             this.load()
         })
     }
 
-    delete(todo) {
-        this.todoService.delete(todo._id).then(() => {
+    delete(contact) {
+        this.todoService.delete(contact).then(() => {
             this.load()
         })
     }

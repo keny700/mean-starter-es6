@@ -1,42 +1,44 @@
 import mongoose from 'mongoose';
 
 const todoSchema = new mongoose.Schema({
-    description: String
+    nom: String,
+    numero: String
 });
 
-let model = mongoose.model('Todo', todoSchema);
+let model = mongoose.model('todo', todoSchema);
 
 export default class Todo {
 
     findAll(req, res) {
-        model.find({}, (err, todos) => {
+        model.find({}, (err, contacts) => {
             if (err) {
                 res.sendStatus(403);
             } else {
-                res.json(todos);
+                res.json(contacts);
             }
         });
     }
 
     findById(req, res) {
-        model.findById(req.params.id, (err, todo) => {
-            if (err || !todo) {
+        model.findById(req.params.id, (err, contact) => {
+            if (err || !contact) {
                 res.sendStatus(403);
             } else {
-                res.json(todo);
+                res.json(contact);
             }
         });
     }
 
     create(req, res) {
         model.create({
-                description: req.body.description
-            },
-            (err, todo) => {
+            nom: req.body.nom,
+            numero: req.body.numero
+        },
+            (err, contact) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
-                    res.json(todo);
+                    res.json(contact);
                 }
             });
     }
@@ -45,12 +47,13 @@ export default class Todo {
         model.update({
             _id: req.params.id
         }, {
-            description: req.body.description
-        }, (err, todo) => {
-            if (err || !todo) {
+            nom: req.body.nom,
+            numero: req.body.numero
+        }, (err, contact) => {
+            if (err || !contact) {
                 res.status(500).send(err.message);
             } else {
-                res.json(todo);
+                res.json(contact);
             }
         });
     }

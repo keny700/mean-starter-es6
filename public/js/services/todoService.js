@@ -5,9 +5,9 @@ class todoService {
     }
 
     create(data) {
-        return this.$http.post('/api/todos', {
-            description: data
-        })
+        return this.$http.post('/api/todos', 
+            data
+        )
     }
 
     getAll() {
@@ -19,9 +19,9 @@ class todoService {
     }
 
     update(id, data) {
-        return this.$http.put('/api/todos/' + id, {
-            description: data
-        })
+        return this.$http.put('/api/todos/' + id, 
+            data
+        )
     }
 
     delete(id) {
